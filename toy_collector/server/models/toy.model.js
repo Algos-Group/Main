@@ -34,7 +34,7 @@ const ToySchema = new mongoose.Schema({
 
 }, {timestamps:true});
 
-const Toy = mongoose.model('Pokemon', ToySchema);
+const Toy = mongoose.model('Toy', ToySchema);
 
 ToySchema.plugin(uniqueValidator)
 
