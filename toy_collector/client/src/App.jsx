@@ -7,6 +7,9 @@ import Login from './components/user/Login';
 import Register from './components/user/Register';
 import Dashboard from './components/user/Dashboard';
 import Update from './components/user/Update';
+import ToyList from './components/toy/ToyList';
+import OneToy from './components/toy/OneToy';
+import EditToy from './components/toy/EditToy';
 
 
 

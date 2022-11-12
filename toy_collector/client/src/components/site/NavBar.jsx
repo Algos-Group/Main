@@ -29,7 +29,7 @@ const logout = (e) => {
     <div className='topbar'>
         <div className='topbarLink'>
           <h1> Welcome to the Toy Vault</h1>
-        { (user.firstName) ?
+        { (user.username) ?
                 <>
                   <Link className="buttons" to="/Dashboard">Dashboard</Link>
                   <Link className="buttons" to={`/updateUser/${user._id}`}>Update User</Link>

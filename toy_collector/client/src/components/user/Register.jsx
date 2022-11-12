@@ -4,8 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const Register= ({setUser}) => {
-    const [ firstName, setFirstName ] = useState("")
-    const [ lastName, setLastName ] = useState("")
+    const [ username, setUsername ] = useState("")
     const [ email, setEmail ] = useState ("")
     const [ password, setPassword ] = useState ("")
     const [ confirmPassword, setConfirmPassword ] = useState ("")
@@ -15,9 +14,8 @@ const Register= ({setUser}) => {
 
     const onSubmitHandler = (e) => {
         e.preventDefault()
-        axios.post('http://localhost:8000/api/registerUser', {
-            firstName,
-            lastName,
+        axios.post('http://localhost:8000/api/register', {
+            username,
             email,
             password,
             confirmPassword,
@@ -26,9 +24,8 @@ const Register= ({setUser}) => {
         console.log("HErrreeererrerere")
         console.log(res)
         navigate('/Dashboard')
-        setUser(res.response.data)
+        setUser(res.data.user)
         // somehow after registration navBar doesnt reload. 
-        window.location.reload()
     }).catch((err)=> {
         console.log(err)
         setErrors(err.response.data.errors)
@@ -40,17 +37,11 @@ return (
             <h1>User Registration</h1>
             <form className="basicForm" onSubmit={onSubmitHandler}>
                 <p>
-                <label>First Name: 
-                    <input type="text" name="firstName" onChange={ (e)=>setFirstName(e.target.value)} value={firstName} />
+                <label>User Name: 
+                    <input type="text" name="username" onChange={ (e)=>setUsername(e.target.value)} value={username} />
                 </label>
                 </p>
-                { errors.firstName ? <span className='warning'>{errors.firstName.message}</span> :null}
-                <p>
-                    <label>Last Name: 
-                    <input type="text" name="lastName" onChange={ (e)=>setLastName(e.target.value)} value={lastName} />
-                    </label>
-                </p>
-                { errors.lastName ? <span className='warning'>{errors.lastName.message}</span> :null}
+                { errors.username ? <span className='warning'>{errors.username.message}</span> :null}
                 <p>
                     <label>Email:  
                         <input type="text" name="email" onChange={ (e)=>setEmail(e.target.value)} value={email} />

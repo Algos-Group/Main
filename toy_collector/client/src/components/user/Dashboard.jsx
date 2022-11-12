@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 const Dashboard = ({user}) => {
     return (
       <div className="mainBody">
-              <h1>Hi, {user.firstName}</h1>
+              <h1>Hiiii, {user.username}</h1>
               <div className="centered">
                 <table className='basicTable'>
                   <tbody>

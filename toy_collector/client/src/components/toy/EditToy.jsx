@@ -3,7 +3,7 @@ import axios, { Axios } from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 
 
-const EditPatient= (props) => {
+const EditToy= (props) => {
   const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [age, setAge] = useState("")
@@ -96,5 +96,5 @@ return (
       </div>
   )
 }
-export default EditPatient;
+export default EditToy;
 
