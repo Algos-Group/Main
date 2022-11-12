@@ -11,6 +11,7 @@ import ToyList from './components/toy/ToyList'
 import OneToy from './components/toy/OneToy';
 import EditToy from './components/toy/EditToy';
 import ToyForm from './components/toy/ToyForm'
+import ReserveToy from './components/toy/ReserveToy';
 
 
 
@@ -37,6 +38,7 @@ function App() {
         <Route path = "/allToys"   element={<ToyList user={user}/>}></Route>
         <Route path = "/Toy/:id"  element={<OneToy user={user}/>}></Route>
         <Route path = "/editToy/:id"   element={<EditToy user={user}/>}></Route>
+        <Route path = "/reserve/:id"   element={<ReserveToy user={user}/>}></Route>
 
         
         </Routes>

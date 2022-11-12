@@ -35,7 +35,7 @@ const NavBar = ({ user }) => {
           <>
             <NavLink className="buttons" to="/Dashboard">Dashboard</NavLink>
             <NavLink className="buttons" to={`/updateUser/${user._id}`}>Update User</NavLink>
-            <Link className="buttons" onClick={logout}>Logout</Link>
+            <Link className="buttons" onClick={logout}>Logout</Link> 
           </>
           :
           <>

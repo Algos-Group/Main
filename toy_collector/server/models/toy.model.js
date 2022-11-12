@@ -34,6 +34,9 @@ const ToySchema = new mongoose.Schema({
     submitter: {
         type: String,
     },
+    reserved: {
+        type: Boolean,
+    }
 
 
 }, {timestamps:true});

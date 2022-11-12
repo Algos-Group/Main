@@ -1,27 +1,24 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import {Link, useNavigate, useParams} from "react-router-dom";
-import DeleteToyButton from "../DeleteToyButton";
 
-
-const OneToy = (props) => {
-  const [name, setName] = useState("")
+const ReserveToy = (props) => {
+    const [name, setName] = useState("")
     const [price, setPrice] = useState("")
     const [category, setCategory] = useState("")
     const [description, setDescription] = useState("")
     const [image, setImage] = useState("")
     const [hashtag, setHashtag] = useState("")
-    const [submitter, setSubmitter] = useState("")
     const[errors, setErrors] = useState("")
-    const [reserve,setReserve] = useState(true)
+
+    const [reserve,setReserve] = useState(false)
+
     const {id} = useParams();
     const navigate = useNavigate();
     const [list, setList] = useState([])
 
     const {user} = props
 
-
-    
     useEffect (() => {
         axios.get(`http://localhost:8000/api/Toy/${id}` ,{withCredentials:true,credentials:'include'})
         .then((res) => {
@@ -34,26 +31,25 @@ const OneToy = (props) => {
             setHashtag(res.data.hashtag)
             setReserve(res.data.reserve)
         }).catch(err=> console.log(err))
-    } , [id])
+    } , [])
 
-  return (
-    <div className="mainBody">
-      <div className="displayForm">
-        <Link className="buttons" to="/allToys">All Toys</Link>
-        <h2>{name}</h2>
-        <p>Price: ${price}</p>
-        <p>Category: {category}</p>
-        <p>Submitted by: {submitter}</p>
-        <p>Description: {description}</p>
-        <p>Reserved? {reserve?'Is Reserved':'not yet'}</p>
-        <img src={image} alt={name} />
-        <br />
-        <Link className="buttons" to={`/reserve/${id}`}>Reserve</Link>
-        <Link className="buttons" to={`/editToy/${id}`}>Edit Toy</Link>
-        <DeleteToyButton list={list} setList={setList} className="warnButton" ToyId={id} />
-    </div>
-  </div>
-  )
+    const reservedYes = () =>{
+        setReserve(true)
+        console.log(reserve) // not sure why undefined
+        navigate('/allToys')
+    }
+    const navBack = ()=>{
+        navigate('/allToys')
+    }
+
+    return (
+        <div>
+            <h1>Are you sure you want to reserve {name}?</h1>
+            <br></br>
+            <button className="buttons" onClick={()=>reservedYes()}>Yes</button>
+            <button className="buttons" onClick={()=>navBack()}>No</button>
+        </div>
+    )
 }
 
-export default OneToy
+export default ReserveToy
