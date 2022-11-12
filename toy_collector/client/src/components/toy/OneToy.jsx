@@ -6,13 +6,13 @@ import DeleteToyButton from "../DeleteToyButton";
 
 const OneToy = ({user}) => {
   const [name, setName] = useState("")
-  const [price, setPrice] = useState("")
-  const [year, setYear] = useState("")
-  const [submitter, setSubmitter] = useState("")
-  const [image, setImage] = useState("")
-  const [errors, setErrors] = useState("")
-  const [rating, setRating] = useState("")
-  const [available, setAvailable] = useState("")
+    const [price, setPrice] = useState("")
+    const [category, setCategory] = useState("")
+    const [description, setDescription] = useState("")
+    const [image, setImage] = useState("")
+    const [hashtag, setHashtag] = useState("")
+    const [submitter, setSubmitter] = useState("")
+    const[errors, setErrors] = useState("")
     const {id} = useParams();
     const navigate = useNavigate();
     const [list, setList] = useState([])
@@ -24,59 +24,28 @@ const OneToy = ({user}) => {
         .then((res) => {
             console.log("this is", res.data);
             setName(res.data.name)
-            setYear(res.data.year)
             setPrice(res.data.price)
-            setSubmitter(res.data.submitter)
-            setRating(res.data.rating)
+            setCategory(res.data.category)
+            setDescription(res.data.description)
             setImage(res.data.image)
+            setHashtag(res.data.hashtag)
         }).catch(err=> console.log(err))
     } , [id])
 
-    useEffect(() => {
-      axios.get('http://localhost:8000/api/allWheelchairs', {withCredentials:true,credentials:'include'})     
-  .then(res => {
-      setList(res.data)
-  })
-  } , [])
 
-  const submitToyHandler = (e) => {
-    e.preventDefault()
-    axios.put(`http://localhost:8000/api/updateToy/${id}`, {
-      name, price, year, submitter, image, rating, available
-    }, {withCredentials:true,credentials:'include'})
-    .then(res => {
-      console.log(res.data)
-      console.log("helllooooooo")
-    navigate("/allToys")
-  }).catch(err=> {
-    console.log( {})
-    console.log(err)
-    
-  })
-  }
+  
 
   return (
     <div className="mainBody">
       <div className="displayForm">
         <Link className="buttons" to="/allToys">All Toys</Link>
         <h2>{name}</h2>
-        <h3>Year Manufactured: {year}</h3>
-        <h4>Price: ${price}</h4>
+        <p>Price: ${price}</p>
+        <p>Category: {category}</p>
         <p>Submitted by: {submitter}</p>
-        <p>Rating: {rating}</p>
-        <p>Submitter: {submitter}</p>
-        <p>Sold?: {available}</p>
-
-        { {available} ?
-        <>
-        </>
-        :
-        
-        <>        
-        <p>Toy sold to: {}</p>
-        </>
-        }
-  
+        <p>Description: {description}</p>
+        <img src={image} alt={name} />
+        <br />
         <Link className="buttons" to={`/editToy/${id}`}>Edit Toy</Link>
         <DeleteToyButton className="warnButton" ToyId={id} />
     </div>

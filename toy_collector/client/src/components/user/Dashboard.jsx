@@ -14,26 +14,27 @@ const Dashboard = ({user}) => {
                     <tr>
                       <td>
                         <img className="categoryImg" src={people} alt='wheelchair'></img>
+                        <Link className="buttons" to="/addToy">Add a toy</Link>               
+                      </td>
+                      <td>
+                        <img className="categoryImg" src={people} alt='wheelchair'></img>
                         <Link  className="buttons" to="/allToys">All Toys</Link>
                       </td>
                     </tr>
+                  </tbody>
+                </table>
+                <table className='basicTable'>
+                  <tbody>
                     <tr>
-                      <td>
+                    <td>
                         <img className="categoryImg" src={people} alt='wheelchair'></img>
                         <Link className="buttons" to="/allToys">Toys Available </Link>
                       </td>
-                    </tr>
-                    <tr>
                       <td>
                         <img className="categoryImg" src={people} alt='wheelchair'></img>
-                        <Link className="buttons" to="/allToys">Toys sold. </Link>               
+                        <Link className="buttons" to="/allToys">Toys sold</Link>               
                       </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <img className="categoryImg" src={people} alt='wheelchair'></img>
-                        <Link className="buttons" to="/addToy">Add a toy. </Link>               
-                      </td>
+                     
                     </tr>
                 </tbody>
                 </table>

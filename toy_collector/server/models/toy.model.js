@@ -30,7 +30,11 @@ const ToySchema = new mongoose.Schema({
     },
     hashtag: {
         type: String,
-    }
+    },
+    submitter: {
+        type: String,
+    },
+
 
 }, {timestamps:true});
 

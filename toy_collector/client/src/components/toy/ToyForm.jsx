@@ -5,10 +5,12 @@ import { useNavigate } from 'react-router-dom';
 const ToyForm= ({user,setUser}) => {
     
     const [name, setName] = useState("")
+    const [price, setPrice] = useState("")
     const [category, setCategory] = useState("")
     const [description, setDescription] = useState("")
     const [image, setImage] = useState("")
     const [hashtag, setHashtag] = useState("")
+    const [submitter, setSubmitter] = useState("")
     const [errors, setErrors] = useState("")
 
     const navigate = useNavigate();
@@ -17,10 +19,12 @@ const ToyForm= ({user,setUser}) => {
         e.preventDefault()
         axios.post('http://localhost:8000/api/addToy', {
            name,
+           price,
            category,
            description,
            image,
-           hashtag
+           hashtag,
+           submitter
     }, {withCredentials:true, credentials:"include"})
     .then(res => {
         console.log(res)
@@ -42,11 +46,18 @@ return (
                 </label>
                 </p>
                 { errors.name ? <span className='warning'>{errors.name.message}</span> :null}
+                <input type="hidden" onChange={ (e)=>setSubmitter(e.target.value)} value={user._id}></input>
+                {/* here  is the hidden user._id field */}
+                <p><label>Price: $ 
+                    <input type="number" name="price" onChange={ (e)=>setPrice(e.target.value)} value={price} />
+                </label>
+                </p>
+                { errors.price ? <span className='warning'>{errors.name.message}</span> :null}
                 <p>
                 <label>Category: 
                 <select name="category"  onChange={ (e)=>setCategory(e.target.value)} value={category}>
                         <option value=""></option>
-                        <option value="Action Figure">Action Figure</option>
+                        <option value="Action Figures">Action Figure</option>
                         <option value="Animals">Animals</option>
                         <option value="Cars">Cars</option>
                         <option value="Construction Toys">Construction Toys</option>

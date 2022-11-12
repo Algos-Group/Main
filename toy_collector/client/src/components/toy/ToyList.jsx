@@ -12,44 +12,36 @@ const ToyList = ({user}) => {
         .then(res => setList(res.data))
     } , [])
 
-    const removeFromDom = (patientId) => {
-        setList(list.filter(patient => patient._id !== patientId))
-        }
   return (
     <div className='mainBody'>
         <table className='tableRow'>
             <tbody>
             <tr>
                             <th>Name:</th>
-                            <th>Action</th>                        
+                            <th>Price:</th>
+                            <th>Category:</th>
+                            <th>Action;</th>                        
             </tr> 
-        {list.map((patient,index) => {
-            return (
-                <>
-                    
-                    { (user.firstName + ' ' + user.lastName === patient.submitter) || (user.admin) ? 
-                    // { !(patient.assignedWheelchair) && (user.firstName + ' ' + user.lastName === patient.submitter) || (user.admin)   ?
-
-                        <>   
+        
+                {list.map((toy,index) => {
+                    return(
                     <tr key={index}>
                             <td>
-                                <Link className="" to={`/patient/${patient._id}`}>{patient.lastNaME} {patient.firstName}'s page</Link>                                
+                                <Link className="" to={`/toy/${toy._id}`}> {toy.name}'s page</Link>                                
                             </td>
                             <td>
-                                <Link className="buttons" to={`/editToy/${patient._id}`}>Edit Toy</Link>
-                                <DeleteToyButton patientId={patient._id} />
-
+                                <p>$ {toy.price}</p>                             
                             </td>
-                    </tr>
-                        </>
-                        :
-                        <>
-                        </>
-                    }
-                </>
-                
-                )})
-            }  
+                            <td>
+                                <p>{toy.category}</p>                             
+                            </td>
+                            <td>
+                                <Link className="buttons" to={`/editToy/${toy._id}`}>Edit Toy</Link>
+                                <DeleteToyButton toyId={toy._id} />
+                            </td>
+                    </tr>   )
+                })}
+        
             </tbody>
             </table>
     </div>

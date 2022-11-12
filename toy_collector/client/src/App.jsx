@@ -7,9 +7,10 @@ import Login from './components/user/Login';
 import Register from './components/user/Register';
 import Dashboard from './components/user/Dashboard';
 import Update from './components/user/Update';
-import ToyList from './components/toy/ToyList';
+import ToyList from './components/toy/ToyList'
 import OneToy from './components/toy/OneToy';
 import EditToy from './components/toy/EditToy';
+import ToyForm from './components/toy/ToyForm'
 
 
 
@@ -32,7 +33,7 @@ function App() {
         <Route path = "/updateUser/:id"  element={<Update user={user} setUser={setUser}/>}></Route>
 
 
-        <Route path = "/addToy"   element={<toyForm user={user}/>}></Route>
+        <Route path = "/addToy"   element={<ToyForm user={user}/>}></Route>
         <Route path = "/allToys"   element={<ToyList user={user}/>}></Route>
         <Route path = "/Toy/:id"  element={<OneToy user={user}/>}></Route>
         <Route path = "/editToy/:id"   element={<EditToy user={user}/>}></Route>
