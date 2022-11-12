@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 const Dashboard = ({user}) => {
     return (
-      <div className="mainBody">
+      <div className="mainBody bg-light">
               <h1>Hiiii, {user.username}</h1>
               <div className="centered">
                 <table className='basicTable'>
@@ -34,7 +34,6 @@ const Dashboard = ({user}) => {
                         <img className="categoryImg" src={people} alt='wheelchair'></img>
                         <Link className="buttons" to="/allToys">Toys sold</Link>               
                       </td>
-                     
                     </tr>
                 </tbody>
                 </table>

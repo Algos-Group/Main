@@ -4,25 +4,25 @@ const jwt = require("jsonwebtoken");
 const SECRET = process.env.SECRET_KEY
 
 module.exports = {
-    registerUser: async(req, res) => {
+    registerUser: async (req, res) => {
         try {
-            const checkEmail = await User.findOne({email: req.body.email })
+            const checkEmail = await User.findOne({ email: req.body.email })
             if (checkEmail) {
                 res.status(400).json({ errors: { email: { message: 'Email in use' } } })
             } else {
-                    const newUser = await User.create(req.body)
-                    const payload = { _id: newUser._id, email: newUser.email, username:newUser.username }
-                    const token = jwt.sign(payload, SECRET)
-                    console.log(newUser)
-                    res.cookie('usertoken', token, { expires: new Date(Date.now() + 900000) })
+                const newUser = await User.create(req.body)
+                const payload = { _id: newUser._id, email: newUser.email, username: newUser.username }
+                const token = jwt.sign(payload, SECRET)
+                console.log(newUser)
+                res.cookie('usertoken', token, { expires: new Date(Date.now() + 900000) })
                     .json({ successMessage: 'usertoken: ', user: payload })
-                } 
-            }catch(err) {
-                console.log("the error is here")
-                res.status(400).json(err)
             }
+        } catch (err) {
+            console.log("the error is here")
+            res.status(400).json(err)
+        }
     },
-     getAllUsers: (req, res) => {
+    getAllUsers: (req, res) => {
         User.find()
             .then(user =>
                 res.json(user))
@@ -30,7 +30,7 @@ module.exports = {
     },
 
     loginUser: async (req, res) => {
-        const user = await User.findOne({email: req.body.email});
+        const user = await User.findOne({ email: req.body.email });
         console.log("Logging in" + user)
         try {
             if (!user) {
@@ -40,10 +40,10 @@ module.exports = {
                 if (!validPassword) {
                     res.status(400).json({ errors: 'Invalid email/password' })
                 } else {
-                    const payload = { _id: user._id, email: user.email, username:user.username }
+                    const payload = { _id: user._id, email: user.email, username: user.username }
                     const token = jwt.sign(payload, SECRET)
                     res.cookie('usertoken', token, { expires: new Date(Date.now() + 900000) })
-                    .json({ successMessage: 'usertoken: ', user: payload })
+                        .json({ successMessage: 'usertoken: ', user: payload })
                 }
             }
         } catch (err) {
@@ -52,15 +52,15 @@ module.exports = {
     },
 
     updateUser: (req, res) => {
-        User.updateOne({_id: req.params.id}, req.body, {new: true, runValidators:true})
+        User.updateOne({ _id: req.params.id }, req.body, { new: true, runValidators: true })
             .then(updatedUser => res.json(updatedUser))
-            .catch((err) => {res.status(400).json(err)})
+            .catch((err) => { res.status(400).json(err) })
     },
 
     getOneUser: (req, res) => {
         User.findOne({
-                _id: req.params.id
-            })
+            _id: req.params.id
+        })
             .then(thisUsr => res.json(thisUsr))
             .catch(err => res.json(err))
     },
@@ -77,7 +77,7 @@ module.exports = {
 
     logOutUser: (req, res) => {
         res.clearCookie('userToken')
-        res.json({success:'User logged out'})
+        res.json({ success: 'User logged out' })
     }
 
 }
