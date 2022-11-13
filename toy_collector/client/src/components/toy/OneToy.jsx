@@ -46,7 +46,7 @@ const OneToy = (props) => {
         <p>Submitted by: {submitter}</p>
         <p>Description: {description}</p>
         <p>Reserved? {reserve?'Is Reserved':'not yet'}</p>
-        <img src={image} alt={name} />
+        <img src={image} alt={name}/>
         <br />
         <Link className="buttons" to={`/reserve/${id}`}>Reserve</Link>
         <Link className="buttons" to={`/editToy/${id}`}>Edit Toy</Link>
