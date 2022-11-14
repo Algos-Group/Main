@@ -79,5 +79,4 @@ module.exports = {
         res.clearCookie('userToken')
         res.json({ success: 'User logged out' })
     }
-
 }
