@@ -4,44 +4,43 @@ import { useEffect } from 'react'
 import people from '../../asset/people.png'
 import { Link } from 'react-router-dom'
 
-const Dashboard = ({user}) => {
-    return (
-      <div className="mainBody bg-light">
-              <h1>Hiiii, {user.username}</h1>
-              <div className="centered">
-                <table className='basicTable'>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <img className="categoryImg" src={people} alt='wheelchair'></img>
-                        <Link className="buttons" to="/addToy">Add a toy</Link>               
-                      </td>
-                      <td>
-                        <img className="categoryImg" src={people} alt='wheelchair'></img>
-                        <Link  className="buttons" to="/allToys">All Toys</Link>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <table className='basicTable'>
-                  <tbody>
-                    <tr>
-                    <td>
-                        <img className="categoryImg" src={people} alt='wheelchair'></img>
-                        <Link className="buttons" to="/allToys">Toys Available </Link>
-                      </td>
-                      <td>
-                        <img className="categoryImg" src={people} alt='wheelchair'></img>
-                        <Link className="buttons" to="/allToys">Toys sold</Link>               
-                      </td>
-                    </tr>
-                </tbody>
-                </table>
-              </div>
-    </div>    
-        
-    )
-  }
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+
+const Dashboard = ({ user }) => {
+  return (
+    <div className="mainBody bg-light">
+      <h1>Hiiii, {user.username}</h1>
+      <div className="d-flex justify-content-center">
+        <Card style={{ width: '12rem' }}>
+          <Card.Img className="categoryImg" src={people} alt='wheelchair' />
+          <Card.Body>
+            <Link to="/addToy"><Button variant="dark">Add a Toy</Button></Link>
+          </Card.Body>
+        </Card>
+        <Card style={{ width: '12rem' }}>
+          <Card.Img className="categoryImg" src={people} alt='wheelchair' />
+          <Card.Body>
+            <Link to="/allToys"><Button variant="dark">All Toys</Button></Link>
+          </Card.Body>
+        </Card>
+        <Card style={{ width: '12rem' }}>
+          <Card.Img className="categoryImg" src={people} alt='wheelchair' />
+          <Card.Body>
+            <Link to="/allToys"><Button variant="dark">Available Toys (not done yet)</Button></Link>
+          </Card.Body>
+        </Card>
+        <Card style={{ width: '12rem' }}>
+          <Card.Img className="categoryImg" src={people} alt='wheelchair' />
+          <Card.Body>
+            <Link to="/allToys"><Button variant="dark">Reserved Toys (not done yet)</Button></Link>
+          </Card.Body>
+        </Card>
+      </div>
+    </div>
+
+  )
+}
 
 
 export default Dashboard
