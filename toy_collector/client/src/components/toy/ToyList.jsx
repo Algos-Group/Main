@@ -19,7 +19,7 @@ const ToyList = ({ user }) => {
             .then(res => setList(res.data))
     }, [])
 
-    const [query, setQuery] = useState("")
+    const [query, setQuery] = useState("") //for search bar
 
 
 
@@ -36,7 +36,7 @@ const ToyList = ({ user }) => {
                     </tr>
                     {
                         sortToy.filter(toy => {
-                            if (query === '') {
+                            if (query === '') { //filter and below for search bar
                                 return toy;
                             } else if (toy.name.toLowerCase().includes(query.toLowerCase())) {
                                 return toy;
