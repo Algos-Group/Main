@@ -6,34 +6,34 @@ import { Link } from 'react-router-dom'
 
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-
+import toyBg from '../../asset/robots.jpeg'
 const Dashboard = ({ user }) => {
   return (
-    
-    <div className="mainBody bg-light">
+    <div className='d-flex w-100 h-100 justify-content-center' style={{backgroundImage: `url(${toyBg}`}}>
+    <div className="mainBody">
       { (user._id) ?
       <>
-      <h1>Hiiii, {user.username}</h1>
-      <div className="d-flex justify-content-center">
-        <Card style={{ width: '12rem' }}>
+      <h1 className='text-start text-dark ms-5'>Hello, {user.username}</h1>
+      <div className="d-flex flex-wrap justify-content-center mt-5">
+        <Card className='m-2' style={{ width: '12rem' }}>
           <Card.Img className="categoryImg" src={people} alt='wheelchair' />
           <Card.Body>
             <Link to="/addToy"><Button variant="dark">Add a Toy</Button></Link>
           </Card.Body>
         </Card>
-        <Card style={{ width: '12rem' }}>
+        <Card className='m-2' style={{ width: '12rem' }}>
           <Card.Img className="categoryImg" src={people} alt='wheelchair' />
           <Card.Body>
             <Link to="/allToys"><Button variant="dark">All Toys</Button></Link>
           </Card.Body>
         </Card>
-        <Card style={{ width: '12rem' }}>
+        <Card className='m-2' style={{ width: '12rem' }}>
           <Card.Img className="categoryImg" src={people} alt='wheelchair' />
           <Card.Body>
             <Link to="/allToys"><Button variant="dark">Available Toys (not done yet)</Button></Link>
           </Card.Body>
         </Card>
-        <Card style={{ width: '12rem' }}>
+        <Card className='m-2' style={{ width: '12rem' }}>
           <Card.Img className="categoryImg" src={people} alt='wheelchair' />
           <Card.Body>
             <Link to="/allToys"><Button variant="dark">Reserved Toys (not done yet)</Button></Link>
@@ -46,7 +46,7 @@ const Dashboard = ({ user }) => {
       </>
     }
     </div>
-
+    </div>
   )
 }
 

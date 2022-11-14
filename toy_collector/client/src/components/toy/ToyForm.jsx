@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const ToyForm = ({ user, setUser }) => {
+const ToyForm = ({ user, setUser, reserve, setReserve }) => {
 
     const [name, setName] = useState("")
     const [price, setPrice] = useState("")
@@ -25,7 +25,8 @@ const ToyForm = ({ user, setUser }) => {
             description,
             image,
             hashtag,
-            submitter:user._id
+            submitter:user._id,
+            reserve:reserve
         }, { withCredentials: true, credentials: "include" })
             .then(res => {
                 console.log(res)

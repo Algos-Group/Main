@@ -29,10 +29,10 @@ const ToyList = ({ user }) => {
             <table className='tableRow'>
                 <tbody>
                     <tr>
-                        <th>Name:</th>
-                        <th>Price:</th>
-                        <th>Category:</th>
-                        <th>Action;</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Category</th>
+                        <th>Action</th>
                     </tr>
                     { (user._id) ? 
                     <>

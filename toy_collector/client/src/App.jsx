@@ -19,6 +19,8 @@ function App() {
 
   const [user, setUser] = useState({})
 
+  const [reserve,setReserve] = useState(false)
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -38,7 +40,7 @@ function App() {
         <Route path = "/allToys"   element={<ToyList user={user}/>}></Route>
         <Route path = "/Toy/:id"  element={<OneToy user={user}/>}></Route>
         <Route path = "/editToy/:id"   element={<EditToy user={user}/>}></Route>
-        <Route path = "/reserve/:id"   element={<ReserveToy user={user}/>}></Route>
+        <Route path = "/reserve/:id"   element={<ReserveToy reserve={reserve} setReserve={setReserve} user={user}/>}></Route>
 
         
         </Routes>
