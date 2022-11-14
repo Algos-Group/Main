@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import DeleteToyButton from '../DeleteToyButton';
 
+import lego from '../../asset/lego_rainbow.jpeg'
+
 const ToyList = ({ user }) => {
     const [list, setList] = useState([])
     const { id } = useParams()
@@ -21,9 +23,10 @@ const ToyList = ({ user }) => {
 
     const [query, setQuery] = useState("") //for search bar
 
-
+// need a better bg just a placeholder for now
 
     return (
+        <div className='container-fluid' style={{backgroundImage: `url(${lego}`}}> 
         <div className='mainBody'>
             <input className='m-3 mb-4' placeholder="Search Toys" onChange={e => setQuery(e.target.value)} />
             <table className='tableRow'>
@@ -32,6 +35,7 @@ const ToyList = ({ user }) => {
                         <th>Name</th>
                         <th>Price</th>
                         <th>Category</th>
+                        <th>Image</th>
                         <th>Action</th>
                     </tr>
                     { (user._id) ? 
@@ -56,6 +60,11 @@ const ToyList = ({ user }) => {
                                     <p>{toy.category}</p>
                                 </td>
                                 <td>
+                                    {
+                                        toy.image ? <img className='w-50' src={toy.image} alt={toy.name}/>: null
+                                    }
+                                </td>
+                                <td>
                                     { (user._id === toy.submitter) ?
                                       <>
                                     <Link className="buttons" to={`/editToy/${toy._id}`}>Edit Toy</Link>
@@ -73,6 +82,7 @@ const ToyList = ({ user }) => {
                                     }
                 </tbody>
             </table>
+        </div>
         </div>
     )
 }
