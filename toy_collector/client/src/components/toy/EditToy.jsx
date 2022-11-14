@@ -3,7 +3,7 @@ import axios, { Axios } from 'axios';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
 
-const EditToy= (props) => {
+const EditToy= ({user}) => {
   const [name, setName] = useState("")
     const [price, setPrice] = useState("")
     const [category, setCategory] = useState("")
@@ -48,6 +48,9 @@ const submitHandler = (e) => {
 }
 return (
       <div className="mainBody">
+         { (user._id) ? 
+         <>
+         
         <Link className="buttons" to="/allToys">All Toys</Link>
         <h1> Update Toy</h1>
         <form className="basicForm" onSubmit={submitHandler}>
@@ -99,6 +102,11 @@ return (
                 </p>
                 <input type="submit" value="Update toy"></input>
             </form>
+            </>
+            :
+            <>
+            </>
+}
       </div>
   )
 }

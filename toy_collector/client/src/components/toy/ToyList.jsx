@@ -34,6 +34,8 @@ const ToyList = ({ user }) => {
                         <th>Category:</th>
                         <th>Action;</th>
                     </tr>
+                    { (user._id) ? 
+                    <>
                     {
                         sortToy.filter(toy => {
                             if (query === '') { //filter and below for search bar
@@ -42,7 +44,8 @@ const ToyList = ({ user }) => {
                                 return toy;
                             }
                         }).map((toy, index) => (
-                                <tr className="box" key={index}>
+                          
+                            <tr className="box" key={index}>
                                 <td>
                                     <Link className="" to={`/toy/${toy._id}`}> {toy.name}'s page</Link>
                                 </td>
@@ -53,11 +56,21 @@ const ToyList = ({ user }) => {
                                     <p>{toy.category}</p>
                                 </td>
                                 <td>
+                                    { (user._id === toy.submitter) ?
+                                      <>
                                     <Link className="buttons" to={`/editToy/${toy._id}`}>Edit Toy</Link>
+                                      <DeleteToyButton toyId={toy._id}/>
+                                      </>
+                                      :<>
+                                      </>
+                                     }
                                 </td>
                             </tr>
-                        ))
-                    }
+                        ))}
+                        </>
+                        :
+                        <></>
+                                    }
                 </tbody>
             </table>
         </div>

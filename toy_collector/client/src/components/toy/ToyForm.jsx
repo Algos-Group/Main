@@ -17,6 +17,7 @@ const ToyForm = ({ user, setUser }) => {
 
     const onSubmitHandler = (e) => {
         e.preventDefault()
+        console.log(user._id)
         axios.post('http://localhost:8000/api/addToy', {
             name,
             price,
@@ -24,7 +25,7 @@ const ToyForm = ({ user, setUser }) => {
             description,
             image,
             hashtag,
-            submitter
+            submitter:user._id
         }, { withCredentials: true, credentials: "include" })
             .then(res => {
                 console.log(res)
@@ -37,7 +38,7 @@ const ToyForm = ({ user, setUser }) => {
 
     return (
         <div className='mainBody'>
-            <h1>Hi {user.firstName} </h1>
+            <h1>Hi {user.username} </h1>
             <h3> Add a Toy</h3>
             <form className="basicForm" onSubmit={onSubmitHandler}>
                 <p><label>Name of Toy:
@@ -45,7 +46,7 @@ const ToyForm = ({ user, setUser }) => {
                 </label>
                 </p>
                 {errors.name ? <span className='warning'>{errors.name.message}</span> : null}
-                <input type="hidden" onChange={(e) => setSubmitter(e.target.value)} value={user._id}></input>
+                <input type="hidden" onSubmit={(e) => setSubmitter(e.target.value)} value={user._id}></input>
                 {/* here  is the hidden user._id field */}
                 <p><label>Price: $
                     <input type="number" name="price" onChange={(e) => setPrice(e.target.value)} value={price} />

@@ -38,6 +38,7 @@ const Login = ({ setUser, user }) => {
     return (
         <div className="mainBody bg-light">
                 {/* some below classnames are from bootstrap */}
+                <br />
             <div className='m-3'>
                 <p className="details">If you have not registered, please register: <a href="/userRegister">here</a> </p>
             </div>

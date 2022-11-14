@@ -14,8 +14,11 @@ module.exports = {
                 const payload = { _id: newUser._id, email: newUser.email, username: newUser.username }
                 const token = jwt.sign(payload, SECRET)
                 console.log(newUser)
-                res.cookie('usertoken', token, { expires: new Date(Date.now() + 900000) })
-                    .json({ successMessage: 'usertoken: ', user: payload })
+                res.status(201).cookie('usertoken', token, {
+                    httpOnly: true,
+                    expires: new Date(Date.now() + 90000)
+                }).json({
+                    successMessage: 'User Logged in',user: payload })
             }
         } catch (err) {
             console.log("the error is here")

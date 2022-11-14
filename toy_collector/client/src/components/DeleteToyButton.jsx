@@ -3,20 +3,18 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 
 
-const DeleteWheelchairButton = (props) => {
-    const { successCallback,list,setList } = props
-    const {id} = useParams()
+const DeleteToyButton = (props) => {
+    const {toyId} = props
     const navigate = useNavigate();
-    const deleteWheelchair = (e) => {
-        axios.delete(`http://localhost:8000/api/delete/${id}`, {withCredentials:true,credentials:'include'})
+    const deleteToy = (e) => {
+        axios.delete("http://localhost:8000/api/delete/"+ toyId, {withCredentials:true,credentials:'include'})
         .then (res => {
-            navigate('/allToys');
-            setList(list.filter(list => list._id !== id))
+            navigate('/Dashboard');
         })
     }
     return (
-        <button className='warnButton' onClick = {deleteWheelchair}>Delete</button>
+        <button className='warnButton' onClick = {deleteToy}>Delete Toy</button>
     )
 }
 
-export default DeleteWheelchairButton
+export default DeleteToyButton

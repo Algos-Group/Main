@@ -9,7 +9,10 @@ import Card from 'react-bootstrap/Card';
 
 const Dashboard = ({ user }) => {
   return (
+    
     <div className="mainBody bg-light">
+      { (user._id) ?
+      <>
       <h1>Hiiii, {user.username}</h1>
       <div className="d-flex justify-content-center">
         <Card style={{ width: '12rem' }}>
@@ -37,6 +40,11 @@ const Dashboard = ({ user }) => {
           </Card.Body>
         </Card>
       </div>
+      </>
+      :
+      <>
+      </>
+    }
     </div>
 
   )

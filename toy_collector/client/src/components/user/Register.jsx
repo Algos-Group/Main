@@ -19,17 +19,15 @@ const Register = ({ setUser }) => {
             email,
             password,
             confirmPassword,
-        }, { withCredentials: true, credentials: "include" })
-            .then(res => {
-                console.log("HErrreeererrerere")
-                console.log(res)
-                navigate('/Dashboard')
+        })
+            .then((res) => {
+                console.log("HErrreeererrerere",res.data.user)
                 setUser(res.data.user)
-                // somehow after registration navBar doesnt reload. 
+                navigate('/Dashboard')
             }).catch((err) => {
-                console.log(err)
+                console.log("Oh OH!!!!!",err)
                 setErrors(err.response.data.errors)
-            })
+            },{withCredentials:true, credentials:"include"})
     }
 
     return (
