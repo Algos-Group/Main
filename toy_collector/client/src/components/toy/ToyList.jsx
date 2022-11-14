@@ -8,6 +8,10 @@ const ToyList = ({ user }) => {
     const [list, setList] = useState([])
     const {id} = useParams()
 
+    const sortToy = [...list].sort((a, b) =>
+    a.name > b.name ? 1 : -1
+    );
+
     useEffect(() => {
         axios.get('http://localhost:8000/api/allToys', { withCredentials: true, credentials: 'include' })
             .then(res => setList(res.data))
@@ -24,7 +28,7 @@ const ToyList = ({ user }) => {
                         <th>Action;</th>
                     </tr>
 
-                    {list.map((toy, index) => {
+                    {sortToy.map((toy, index) => {
                         return (
                             <tr key={index}>
                                 <td>
