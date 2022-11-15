@@ -12,12 +12,11 @@ const OneToy = (props) => {
     const [image, setImage] = useState("")
     const [hashtag, setHashtag] = useState("")
     const [submitter, setSubmitter] = useState("")
-    const [reserve,setReserve] = useState(true)
     const {id} = useParams();
     const navigate = useNavigate();
     const [list, setList] = useState([])
 
-    const {user} = props
+    const {user,reserve,setReserve} = props
 
 
     
@@ -25,6 +24,7 @@ const OneToy = (props) => {
         axios.get(`http://localhost:8000/api/Toy/${id}` ,{withCredentials:true,credentials:'include'})
         .then((res) => {
             console.log("this is", res.data);
+            console.log("reserve: ", res.data.reserve);
             setName(res.data.name)
             setPrice(res.data.price)
             setCategory(res.data.category)

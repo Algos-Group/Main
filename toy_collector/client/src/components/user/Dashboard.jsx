@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import toyBg from '../../asset/robots.jpeg'
+
+
 const Dashboard = ({ user }) => {
   return (
     <div className='d-flex w-100 h-100 justify-content-center' style={{backgroundImage: `url(${toyBg}`}}>

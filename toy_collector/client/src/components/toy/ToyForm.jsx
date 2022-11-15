@@ -28,7 +28,7 @@ const ToyForm = ({ user, setUser, reserve, setReserve }) => {
             image,
             hashtag,
             submitter: user._id,
-            reserve: reserve
+            reserve
         }, { withCredentials: true, credentials: "include" })
             .then(res => {
                 console.log(res)
@@ -57,9 +57,8 @@ const ToyForm = ({ user, setUser, reserve, setReserve }) => {
                         }
                     </div>
                     {/*  */}
-
                     <input type="hidden" onSubmit={(e) => setSubmitter(e.target.value)} value={user._id}></input>
-
+                    <input type="hidden" onSubmit={(e) => setReserve(e.target.value)} value={false}></input>
                     {/* here  is the hidden user._id field */}
                     <div className='form-floating w-75'>
                         {
