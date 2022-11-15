@@ -2,112 +2,144 @@ import React, { useEffect, useState } from 'react'
 import axios, { Axios } from 'axios';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
+import Lego from '../../asset/lego.jpeg'
 
-const EditToy= ({user}) => {
+
+const EditToy = ({ user }) => {
   const [name, setName] = useState("")
-    const [price, setPrice] = useState("")
-    const [category, setCategory] = useState("")
-    const [description, setDescription] = useState("")
-    const [image, setImage] = useState("")
-    const [hashtag, setHashtag] = useState("")
-    const[errors, setErrors] = useState("")
+  const [price, setPrice] = useState("")
+  const [category, setCategory] = useState("")
+  const [description, setDescription] = useState("")
+  const [image, setImage] = useState("")
+  const [hashtag, setHashtag] = useState("")
+  const [errors, setErrors] = useState("")
 
 
   const navigate = useNavigate();
-  
-  const {id} = useParams()
 
-useEffect(() => {
-  axios.get(`http://localhost:8000/api/toy/${id}`, {withCredentials:true,credentials:'include'})
-  .then((res) => {
-    setName(res.data.name)
-    setPrice(res.data.price)
-    setCategory(res.data.category)
-    setDescription(res.data.description)
-    setImage(res.data.image)
-    setHashtag(res.data.hashtag)
-  }).catch((err) => {
-    console.log(err)
-  })
-} ,[])
+  const { id } = useParams()
 
-const submitHandler = (e) => {
-  e.preventDefault()
-  axios.put(`http://localhost:8000/api/update/${id}`, {
-   name, price, category, description, image, hashtag
-  }, {withCredentials:true,credentials:'include'})
-.then(res => {
-  console.log(res)
-  console.log(res.data)
-  navigate("/allToys")
-}).catch(err=> {
-  console.log(err)
-  setErrors(err.response.data.errors)
-})
+  useEffect(() => {
+    axios.get(`http://localhost:8000/api/toy/${id}`, { withCredentials: true, credentials: 'include' })
+      .then((res) => {
+        setName(res.data.name)
+        setPrice(res.data.price)
+        setCategory(res.data.category)
+        setDescription(res.data.description)
+        setImage(res.data.image)
+        setHashtag(res.data.hashtag)
+      }).catch((err) => {
+        console.log(err)
+      })
+  }, [])
 
-}
-return (
-      <div className="mainBody">
-         { (user._id) ? 
-         <>
-         
-        <Link className="buttons" to="/allToys">All Toys</Link>
-        <h1> Update Toy</h1>
-        <form className="basicForm" onSubmit={submitHandler}>
-                <p><label>Name: 
-                    <input type="text" name="name" onChange={ (e)=>setName(e.target.value)} value={name} />
-                </label>
-                </p>
-                { errors.name ? <span className='warning'>{errors.name.message}</span> :null}
-                <p><label>Price: 
-                <input type="number" name="price" onChange={ (e)=>setPrice(e.target.value)} value={price} />
+  const submitHandler = (e) => {
+    e.preventDefault()
+    axios.put(`http://localhost:8000/api/update/${id}`, {
+      name, price, category, description, image, hashtag
+    }, { withCredentials: true, credentials: 'include' })
+      .then(res => {
+        console.log(res)
+        console.log(res.data)
+        navigate("/allToys")
+      }).catch(err => {
+        console.log(err)
+        setErrors(err.response.data.errors)
+      })
 
-                </label>
-                </p>
-                { errors.price ? <span className='warning'>{errors.price.message}</span> :null}
-
-                <p>
-                <label>Category: 
-                <select name="category"  onChange={ (e)=>setCategory(e.target.value)} value={category}>
-                <option value=""></option>
-                        <option value="Action Figures">Action Figure</option>
-                        <option value="Animals">Animals</option>
-                        <option value="Cars">Cars</option>
-                        <option value="Construction Toys">Construction Toys</option>
-                        <option value="Creative Toys">Creative Toys</option>
-                        <option value="Dolls">Dolls</option>
-                        <option value="Educational Toys">Educational Toys</option>
-                        <option value="Electronic Toys">Electronic Toys</option>
-                        <option value="Puzzle">Puzzle</option>
-                        <option value="Games">Games</option>
-                    </select>         
-                </label>
-                </p>
-                { errors.category ? <span className='warning'>{errors.category.message}</span> :null}
-                <p>
-                <label>Description:  
-                <textarea name="description" onChange={ (e)=>setDescription(e.target.value)} value={description} />
-                </label>
-                </p>
-                { errors.description ? <span className='warning'>{errors.description.message}</span> :null}
-                <p>
-                <label>Image: 
-                <input type="text" name="image" onChange={ (e)=>setImage(e.target.value)} value={image} />
-                </label>
-                </p>
-                <p>
-                <label>Hashtag: 
-                <input type="text" name="hashtag" onChange={ (e)=>setHashtag(e.target.value)} value={hashtag} />
-                </label>
-                </p>
-                <input type="submit" value="Update toy"></input>
-            </form>
-            </>
-            :
-            <>
-            </>
-}
-      </div>
+  }
+  return (
+    <div className='h-auto' style={{ backgroundImage: `url(${Lego}`, width:'auto' }}>
+    <div className="mainBody m-1">
+      {(user._id) ?
+        <>
+          <Link className="buttons" to="/allToys">All Toys</Link>
+          <h1 className='text-light'> Update Toy</h1>
+          <form className="basicForm" onSubmit={submitHandler}>
+            <div className='form-floating w-75'>
+              {
+                errors.name ? <div className='form-floating'>
+                  <input className="form-control is-invalid" id="floatingInputValue" type="text" onChange={(e) => setName(e.target.value)} />
+                  <label htmlFor="floatingInputValue" className='text-danger'>* {errors.name.message}</label><br />
+                </div> : <div className='form-floating'>
+                  <input value={name} name="name" className="form-control " id="floatingInputValue" type="text" onChange={(e) => setName(e.target.value)} />
+                  <label htmlFor="floatingInputValue" className='text-dark'><span style={{ color: 'red' }}>*</span> Name of Toy</label><br />
+                </div>
+              }
+            </div>
+            <div className='form-floating w-75'>
+              {
+                errors.price ? <div className='form-floating'>
+                  <input className="form-control is-invalid" id="floatingInputValue" type="number" onChange={(e) => setPrice(e.target.value)} />
+                  <label htmlFor="floatingInputValue" className='text-danger'>* {errors.price.message}</label><br />
+                </div> : <div className='form-floating'>
+                  <input value={price} name="price" className="form-control " id="floatingInputValue" type="number" onChange={(e) => setPrice(e.target.value)} />
+                  <label htmlFor="floatingInputValue" className='text-dark'><span style={{ color: 'red' }}>*</span>$ Price</label><br />
+                </div>
+              }
+            </div>
+            <div className='d-flex w-75'>
+              <div className='form-floating mb-3 col-12 ml-5 text-start'>
+                <div style={{ color: 'red' }}>
+                  {
+                    errors.category && <p>{errors.category.message}</p>
+                  }
+                </div>
+                <div className='form-floating'>
+                  <select value={category} name='category' className='form-select' id='floatingSelect' onChange={(e) => setCategory(e.target.value)}>
+                    <option value=""></option>
+                    <option value="Action Figures">Action Figure</option>
+                    <option value="Animals">Animals</option>
+                    <option value="Cars">Cars</option>
+                    <option value="Construction Toys">Construction Toys</option>
+                    <option value="Creative Toys">Creative Toys</option>
+                    <option value="Dolls">Dolls</option>
+                    <option value="Educational Toys">Educational Toys</option>
+                    <option value="Electronic Toys">Electronic Toys</option>
+                    <option value="Puzzle">Puzzle</option>
+                    <option value="Games">Games</option>
+                  </select>
+                  <label className='form-label' htmlFor='floatingSelect'> <span style={{ color: 'red' }}>*</span>Category</label>
+                </div>
+              </div>
+            </div>
+            <div className='form-floating w-75'>
+              {
+                errors.description ? <div className='form-floating'>
+                  <input className="form-control is-invalid" id="floatingInputValue" type="text" onChange={(e) => setDescription(e.target.value)} />
+                  <label htmlFor="floatingInputValue" className='text-danger'>* {errors.description.message}</label><br />
+                </div> : <div className='form-floating'>
+                  <input value={description} className="form-control" name="description" id="floatingInputValue" type={"text"} onChange={(e) => setDescription(e.target.value)} />
+                  <label htmlFor="floatingInputValue" className='text-dark'><span style={{ color: 'red' }}>*</span> Description</label><br />
+                </div>
+              }
+            </div>
+            <div className='form-floating w-75'>
+              {
+                errors.image ? <div className='form-floating'>
+                  <input className="form-control is-invalid" id="floatingInputValue" type="text" onChange={(e) => setImage(e.target.value)} />
+                  <label htmlFor="floatingInputValue" className='text-danger'>* {errors.image.message}</label><br />
+                </div> : <div className='form-floating'>
+                  <input value={image} className="form-control " name="image" id="floatingInputValue" type={"text"} onChange={(e) => setImage(e.target.value)} />
+                  <label htmlFor="floatingInputValue" className='text-dark'> Image</label><br />
+                </div>
+              }
+            </div>
+            <div className='form-floating w-75'>
+              <div className='form-floating'>
+                <input value={hashtag} className="form-control" name="hashtag" id="floatingInputValue" type={"text"} onChange={(e) => setHashtag(e.target.value)} />
+                <label htmlFor="floatingInputValue" className='text-dark'>Hashtag</label><br />
+              </div>
+            </div>
+            <input className='btn btn-dark' type="submit" value="Update toy"></input>
+          </form>
+        </>
+        :
+        <>
+        </>
+      }
+    </div>
+    </div>
   )
 }
 export default EditToy;

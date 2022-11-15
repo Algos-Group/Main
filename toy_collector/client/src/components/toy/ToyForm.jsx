@@ -45,7 +45,7 @@ const ToyForm = ({ user, setUser, reserve, setReserve }) => {
                 <h1 className='text-light'>Hi {user.username} </h1>
                 <h3 className='text-light'> Add a Toy</h3>
                 <form className="basicForm" onSubmit={onSubmitHandler}>
-                    <div className='form-floating'>
+                    <div className='form-floating w-75'>
                         {
                             errors.name ? <div className='form-floating'>
                                 <input className="form-control is-invalid" id="floatingInputValue" type="text" onChange={(e) => setName(e.target.value)} />
@@ -59,9 +59,9 @@ const ToyForm = ({ user, setUser, reserve, setReserve }) => {
                     {/*  */}
 
                     <input type="hidden" onSubmit={(e) => setSubmitter(e.target.value)} value={user._id}></input>
-                    
+
                     {/* here  is the hidden user._id field */}
-                    <div className='form-floating'>
+                    <div className='form-floating w-75'>
                         {
                             errors.price ? <div className='form-floating'>
                                 <input className="form-control is-invalid" id="floatingInputValue" type="number" onChange={(e) => setPrice(e.target.value)} />
@@ -72,7 +72,7 @@ const ToyForm = ({ user, setUser, reserve, setReserve }) => {
                             </div>
                         }
                     </div>
-                    <div className='d-flex'>
+                    <div className='d-flex w-75'>
                         <div className='form-floating mb-3 col-12 ml-5 text-start'>
                             <div style={{ color: 'red' }}>
                                 {
@@ -97,7 +97,7 @@ const ToyForm = ({ user, setUser, reserve, setReserve }) => {
                             </div>
                         </div>
                     </div>
-                    <div className='form-floating'>
+                    <div className='form-floating w-75'>
                         {
                             errors.description ? <div className='form-floating'>
                                 <input className="form-control is-invalid" id="floatingInputValue" type="text" onChange={(e) => setDescription(e.target.value)} />
@@ -108,7 +108,7 @@ const ToyForm = ({ user, setUser, reserve, setReserve }) => {
                             </div>
                         }
                     </div>
-                    <div className='form-floating'>
+                    <div className='form-floating w-75'>
                         {
                             errors.image ? <div className='form-floating'>
                                 <input className="form-control is-invalid" id="floatingInputValue" type="text" onChange={(e) => setImage(e.target.value)} />
@@ -119,14 +119,13 @@ const ToyForm = ({ user, setUser, reserve, setReserve }) => {
                             </div>
                         }
                     </div>
-                    <div className='form-floating'>
-
+                    <div className='form-floating w-75'>
                         <div className='form-floating'>
                             <input className="form-control" name="hashtag" id="floatingInputValue" type={"text"} onChange={(e) => setHashtag(e.target.value)} />
                             <label htmlFor="floatingInputValue" className='text-dark'>Hashtag</label><br />
                         </div>
                     </div>
-                    <input type="submit" value="Add Toy"></input>
+                    <input className='btn btn-dark' type="submit" value="Add Toy"></input>
                 </form>
             </div>
         </div>
