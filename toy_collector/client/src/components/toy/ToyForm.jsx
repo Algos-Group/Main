@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+import Lego from '../../asset/lego_city.jpeg'
+
 const ToyForm = ({ user, setUser, reserve, setReserve }) => {
 
     const [name, setName] = useState("")
@@ -25,8 +27,8 @@ const ToyForm = ({ user, setUser, reserve, setReserve }) => {
             description,
             image,
             hashtag,
-            submitter:user._id,
-            reserve:reserve
+            submitter: user._id,
+            reserve: reserve
         }, { withCredentials: true, credentials: "include" })
             .then(res => {
                 console.log(res)
@@ -38,59 +40,95 @@ const ToyForm = ({ user, setUser, reserve, setReserve }) => {
     }
 
     return (
-        <div className='mainBody'>
-            <h1>Hi {user.username} </h1>
-            <h3> Add a Toy</h3>
-            <form className="basicForm" onSubmit={onSubmitHandler}>
-                <p><label>Name of Toy:
-                    <input type="text" name="name" onChange={(e) => setName(e.target.value)} value={name} />
-                </label>
-                </p>
-                {errors.name ? <span className='warning'>{errors.name.message}</span> : null}
-                <input type="hidden" onSubmit={(e) => setSubmitter(e.target.value)} value={user._id}></input>
-                {/* here  is the hidden user._id field */}
-                <p><label>Price: $
-                    <input type="number" name="price" onChange={(e) => setPrice(e.target.value)} value={price} />
-                </label>
-                </p>
-                {errors.price ? <span className='warning'>{errors.name.message}</span> : null}
-                <p>
-                    <label>Category:
-                        <select name="category" onChange={(e) => setCategory(e.target.value)} value={category}>
-                            <option value=""></option>
-                            <option value="Action Figures">Action Figure</option>
-                            <option value="Animals">Animals</option>
-                            <option value="Cars">Cars</option>
-                            <option value="Construction Toys">Construction Toys</option>
-                            <option value="Creative Toys">Creative Toys</option>
-                            <option value="Dolls">Dolls</option>
-                            <option value="Educational Toys">Educational Toys</option>
-                            <option value="Electronic Toys">Electronic Toys</option>
-                            <option value="Puzzle">Puzzle</option>
-                            <option value="Games">Games</option>
-                        </select>
-                    </label>
-                </p>
-                {errors.category ? <span className='warning'>{errors.category.message}</span> : null}
+        <div className='h-auto' style={{ backgroundImage: `url(${Lego}`, width: 'auto' }}>
+            <div className='mainBody m-1'>
+                <h1 className='text-light'>Hi {user.username} </h1>
+                <h3 className='text-light'> Add a Toy</h3>
+                <form className="basicForm" onSubmit={onSubmitHandler}>
+                    <div className='form-floating'>
+                        {
+                            errors.name ? <div className='form-floating'>
+                                <input className="form-control is-invalid" id="floatingInputValue" type="text" onChange={(e) => setName(e.target.value)} />
+                                <label htmlFor="floatingInputValue" className='text-danger'>* {errors.name.message}</label><br />
+                            </div> : <div className='form-floating'>
+                                <input name="name" className="form-control " id="floatingInputValue" type="text" onChange={(e) => setName(e.target.value)} />
+                                <label htmlFor="floatingInputValue" className='text-dark'><span style={{ color: 'red' }}>*</span> Name of Toy</label><br />
+                            </div>
+                        }
+                    </div>
+                    {/*  */}
 
-                <p>
-                    <label>Description:
-                        <textarea name="description" onChange={(e) => setDescription(e.target.value)} value={description} />
-                    </label>
-                </p>
-                {errors.description ? <span className='warning'>{errors.description.message}</span> : null}
-                <p>
-                    <label>Image:
-                        <input type="text" name="image" onChange={(e) => setImage(e.target.value)} value={image} />
-                    </label>
-                </p>
-                <p>
-                    <label>Hashtag:
-                        <input type="text" name="hashtag" onChange={(e) => setHashtag(e.target.value)} value={hashtag} />
-                    </label>
-                </p>
-                <input type="submit" value="Add Toy"></input>
-            </form>
+                    <input type="hidden" onSubmit={(e) => setSubmitter(e.target.value)} value={user._id}></input>
+                    
+                    {/* here  is the hidden user._id field */}
+                    <div className='form-floating'>
+                        {
+                            errors.price ? <div className='form-floating'>
+                                <input className="form-control is-invalid" id="floatingInputValue" type="number" onChange={(e) => setPrice(e.target.value)} />
+                                <label htmlFor="floatingInputValue" className='text-danger'>* {errors.price.message}</label><br />
+                            </div> : <div className='form-floating'>
+                                <input name="price" className="form-control " id="floatingInputValue" type="number" onChange={(e) => setPrice(e.target.value)} />
+                                <label htmlFor="floatingInputValue" className='text-dark'><span style={{ color: 'red' }}>*</span>$ Price</label><br />
+                            </div>
+                        }
+                    </div>
+                    <div className='d-flex'>
+                        <div className='form-floating mb-3 col-12 ml-5 text-start'>
+                            <div style={{ color: 'red' }}>
+                                {
+                                    errors.category && <p>{errors.category.message}</p>
+                                }
+                            </div>
+                            <div className='form-floating'>
+                                <select name='category' className='form-select' id='floatingSelect' onChange={(e) => setCategory(e.target.value)}>
+                                    <option value=""></option>
+                                    <option value="Action Figures">Action Figure</option>
+                                    <option value="Animals">Animals</option>
+                                    <option value="Cars">Cars</option>
+                                    <option value="Construction Toys">Construction Toys</option>
+                                    <option value="Creative Toys">Creative Toys</option>
+                                    <option value="Dolls">Dolls</option>
+                                    <option value="Educational Toys">Educational Toys</option>
+                                    <option value="Electronic Toys">Electronic Toys</option>
+                                    <option value="Puzzle">Puzzle</option>
+                                    <option value="Games">Games</option>
+                                </select>
+                                <label className='form-label' htmlFor='floatingSelect'> <span style={{ color: 'red' }}>*</span>Category</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='form-floating'>
+                        {
+                            errors.description ? <div className='form-floating'>
+                                <input className="form-control is-invalid" id="floatingInputValue" type="text" onChange={(e) => setDescription(e.target.value)} />
+                                <label htmlFor="floatingInputValue" className='text-danger'>* {errors.description.message}</label><br />
+                            </div> : <div className='form-floating'>
+                                <input className="form-control" name="description" id="floatingInputValue" type={"text"} onChange={(e) => setDescription(e.target.value)} />
+                                <label htmlFor="floatingInputValue" className='text-dark'><span style={{ color: 'red' }}>*</span> Description</label><br />
+                            </div>
+                        }
+                    </div>
+                    <div className='form-floating'>
+                        {
+                            errors.image ? <div className='form-floating'>
+                                <input className="form-control is-invalid" id="floatingInputValue" type="text" onChange={(e) => setImage(e.target.value)} />
+                                <label htmlFor="floatingInputValue" className='text-danger'>* {errors.image.message}</label><br />
+                            </div> : <div className='form-floating'>
+                                <input className="form-control " name="image" id="floatingInputValue" type={"text"} onChange={(e) => setImage(e.target.value)} />
+                                <label htmlFor="floatingInputValue" className='text-dark'> Image</label><br />
+                            </div>
+                        }
+                    </div>
+                    <div className='form-floating'>
+
+                        <div className='form-floating'>
+                            <input className="form-control" name="hashtag" id="floatingInputValue" type={"text"} onChange={(e) => setHashtag(e.target.value)} />
+                            <label htmlFor="floatingInputValue" className='text-dark'>Hashtag</label><br />
+                        </div>
+                    </div>
+                    <input type="submit" value="Add Toy"></input>
+                </form>
+            </div>
         </div>
     )
 }

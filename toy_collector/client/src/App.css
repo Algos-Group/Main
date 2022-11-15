@@ -34,7 +34,7 @@
 .topbar {
   background-size: 100%;
   background-position: top;
-  height: 200px;
+  height: 150px;
   margin: -5px;
 }
 
@@ -48,7 +48,7 @@ a :visited {
 
 
 .topbarLink {
-  padding: 8%;
+  padding: 2%;
 }
 
 .buttons {
@@ -170,12 +170,12 @@ input {
   align-items: center;
   justify-content: center;
   border: 0px solid;
-  padding: 20px 0px;
+  /* padding: 20px 0px; */
 
   margin: auto;
-  border-radius: 20px;
+  /* border-radius: 20px; */
   width: 60%;
-  box-shadow: 2px 2px 10px grey;
+  box-shadow: 2px 2px 2px black;
 
 }
 

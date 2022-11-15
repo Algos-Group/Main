@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import DeleteToyButton from '../DeleteToyButton';
 
-import lego from '../../asset/lego_rainbow.jpeg'
+import lego from '../../asset/lego_circle.jpeg'
 
 const ToyList = ({ user }) => {
     const [list, setList] = useState([])
@@ -26,9 +26,9 @@ const ToyList = ({ user }) => {
 // need a better bg just a placeholder for now
 
     return (
-        <div className='container-fluid' style={{backgroundImage: `url(${lego}`}}> 
-        <div className='mainBody'>
-            <input className='m-3 mb-4' placeholder="Search Toys" onChange={e => setQuery(e.target.value)} />
+        <div className='h-auto' style={{backgroundImage: `url(${lego}`}}> 
+        <div className='mainBody m-1'>
+            <input className='m-3' placeholder="Search Toys" onChange={e => setQuery(e.target.value)} />
             <table className='tableRow'>
                 <tbody>
                     <tr>
