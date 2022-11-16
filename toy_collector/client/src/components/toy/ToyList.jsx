@@ -24,7 +24,7 @@ const ToyList = ({ user }) => {
 
 
     return (
-        <div className='mainBody'>
+        <div className='mainBody bg-light m-1'>
             <input className='m-3 mb-4' placeholder="Search Toys" onChange={e => setQuery(e.target.value)} />
             <table className='tableRow'>
                 <tbody>

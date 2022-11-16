@@ -31,7 +31,7 @@ const Register = ({ setUser }) => {
     }
 
     return (
-        <div className="mainBody bg-light">
+        <div className="mainBody bg-light m-1">
             <h1>User Registration</h1>
             <form className="basicForm" onSubmit={onSubmitHandler}>
                 {/* below classnames are from bootstrap */}

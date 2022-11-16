@@ -13,7 +13,7 @@ import Card from 'react-bootstrap/Card';
 const Dashboard = ({ user }) => {
   return (
     
-    <div className="mainBody bg-light">
+    <div className="mainBody bg-light m-1">
       { (user._id) ?
       <>
       <h1>Hiiii, {user.username}</h1>

@@ -24,7 +24,7 @@ const ReservedToy = ({ user }) => {
 
 
     return (
-        <div className='mainBody'>
+        <div className='mainBody bg-light m-1'>
             <input className='' placeholder="Search Toys" onChange={e => setQuery(e.target.value)} />
             <h3 className='display-5 mb-4 m-3'>Reserved Toys</h3>
             <table className='tableRow'>
