@@ -48,7 +48,6 @@ const ToyList = ({ user }) => {
                                 return toy;
                             }
                         }).map((toy, index) => (
-                          
                             <tr className="box" key={index}>
                                 <td>
                                     <Link className="" to={`/toy/${toy._id}`}> {toy.name}'s page</Link>
