@@ -70,7 +70,7 @@ const ReservedToy = ({ user }) => {
                                             </td>
                                             {toy.reservedBy ?
                                                 <>
-                                                    <p>Yes</p>
+                                                    <p style={{color:'red'}}>Yes</p>
                                                 </>
                                                 :
                                                 <>
