@@ -50,7 +50,7 @@ const ReserveToy = ({user}) => {
     }
 
     return (
-        <div>
+        <div className="bg-light m-1">
             <h1>Are you sure you want to reserve {name}?</h1>
             <br></br>
             <form onSubmit={reserveSubmit} >
