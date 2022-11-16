@@ -32,6 +32,7 @@ const EditToy = ({ user }) => {
         setDescription(res.data.description)
         setImage(res.data.image)
         setHashtag(res.data.hashtag)
+        setSubmitter(res.data.submitter)
         setReservedBy(res.data.reservedBy)
       }).catch((err) => {
         console.log(err)

@@ -35,56 +35,53 @@ const ToyList = ({ user }) => {
                         <th>Edit / Delete:</th>
                         <th>Reserved?:</th>
                     </tr>
-                    { (user._id) ? 
-                    <>
-                    {
-                        sortToy.filter(toy => {
-                            if (query === '') { //filter and below for search bar
-                                return toy;
-                            } else if (toy.name.toLowerCase().includes(query.toLowerCase())) {
-                                return toy;
-                            }
-                        }).map((toy, index) => (
-                          
-                            <tr className="box" key={index}>
-                                <td>
-                                    <Link className="" to={`/toy/${toy._id}`}> {toy.name}'s page</Link>
-                                </td>
-                                <td>
-                                    <p>$ {toy.price}</p>
-                                </td>
-                                <td>
-                                    <p>{toy.category}</p>
-                                </td>
-                                <td>
-                                    { (user._id === toy.submitter) ?
-                                      <>
-                                    <Link className="buttons" to={`/editToy/${toy._id}`}>Edit Toy</Link>
-                                      <DeleteToyButton toyId={toy._id}/>
-                                      </>
-                                      :<>
-                                      </>
-                                     }
-                                </td>
-                                {toy.reservedBy ?
-                                <>
-                                <p style={{color:'red'}}>Yes</p>
-                                </>
-                                :
-                                <>
-                                <p>NOPE!</p>
+                    {(user._id) ?
+                        <>
+                            {
+                                sortToy.filter(toy => {
+                                    if (query === '') { //filter and below for search bar
+                                        return toy;
+                                    } else if (toy.name.toLowerCase().includes(query.toLowerCase())) {
+                                        return toy;
+                                    }
+                                }).map((toy, index) => (
 
-                                </>
-                                }
-                                <td>
+                                    <tr className="box" key={index}>
+                                        <td>
+                                            <Link className="" to={`/toy/${toy._id}`}> {toy.name}'s page</Link>
+                                        </td>
+                                        <td>
+                                            <p>$ {toy.price}</p>
+                                        </td>
+                                        <td>
+                                            <p>{toy.category}</p>
+                                        </td>
+                                        <td>
+                                            {(user._id === toy.submitter) ?
+                                                <>
+                                                    <Link className="buttons" to={`/editToy/${toy._id}`}>Edit Toy</Link>
+                                                    <DeleteToyButton toyId={toy._id} />
+                                                </>
+                                                : <>
+                                                </>
+                                            }
+                                        </td>
+                                        {toy.reservedBy ?
+                                            <>
+                                                <p style={{ color: 'red' }}>Yes</p>
+                                            </>
+                                            :
+                                            <>
+                                                <p>NOPE!</p>
 
-                                </td>
-                            </tr>
-                        ))}
+                                            </>
+                                        }
+                                    </tr>
+                                ))}
                         </>
                         :
                         <></>
-                                    }
+                    }
                 </tbody>
             </table>
         </div>
