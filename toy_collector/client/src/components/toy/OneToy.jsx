@@ -4,7 +4,7 @@ import {Link, useNavigate, useParams} from "react-router-dom";
 import DeleteToyButton from "../DeleteToyButton";
 
 
-const OneToy = (props) => {
+const OneToy = ({user}) => {
   const [name, setName] = useState("")
     const [price, setPrice] = useState("")
     const [category, setCategory] = useState("")
@@ -12,19 +12,14 @@ const OneToy = (props) => {
     const [image, setImage] = useState("")
     const [hashtag, setHashtag] = useState("")
     const [submitter, setSubmitter] = useState("")
+    const [reservedBy, setReservedBy] = useState("")
     const {id} = useParams();
     const navigate = useNavigate();
-    const [list, setList] = useState([])
 
-    const {user,reserve,setReserve} = props
-
-
-    
     useEffect (() => {
         axios.get(`http://localhost:8000/api/Toy/${id}` ,{withCredentials:true,credentials:'include'})
         .then((res) => {
             console.log("this is", res.data);
-            console.log("reserve: ", res.data.reserve);
             setName(res.data.name)
             setPrice(res.data.price)
             setCategory(res.data.category)
@@ -32,7 +27,7 @@ const OneToy = (props) => {
             setImage(res.data.image)
             setHashtag(res.data.hashtag)
             setSubmitter(res.data.submitter)
-            setReserve(res.data.reserve)
+            setReservedBy(res.data.reservedBy)
         }).catch(err=> console.log(err))
     } , [id])
 
@@ -46,10 +41,17 @@ const OneToy = (props) => {
         <p>Price: ${price}</p>
         <p>Category: {category}</p>
         <p>Description: {description}</p>
-        <p>Reserved? {reserve?'Is Reserved':'not yet'}</p>
+        <p>Reserved? {reservedBy?':(, Is Reserved':'Nope! Still available!'}</p>
         <img src={image} alt={name}/>
         <br />
-        <Link className="buttons" to={`/reserve/${id}`}>Reserve</Link>
+        { !reservedBy ?
+        <>
+        <Link className="buttons" to={`/reserve/${id}`}>Reserve this toy</Link>
+        </>
+        :
+        <>
+        </>
+}
         { (user._id === submitter) ?
         <>
         <Link className="buttons" to={`/editToy/${id}`}>Edit Toy</Link>

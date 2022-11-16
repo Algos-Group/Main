@@ -12,6 +12,10 @@ const EditToy = ({ user }) => {
   const [description, setDescription] = useState("")
   const [image, setImage] = useState("")
   const [hashtag, setHashtag] = useState("")
+  const [reservedBy, setReservedBy] = useState("")
+  const [submitter, setSubmitter] = useState("")
+
+
   const [errors, setErrors] = useState("")
 
 
@@ -28,6 +32,7 @@ const EditToy = ({ user }) => {
         setDescription(res.data.description)
         setImage(res.data.image)
         setHashtag(res.data.hashtag)
+        setReservedBy(res.data.reservedBy)
       }).catch((err) => {
         console.log(err)
       })
@@ -36,7 +41,7 @@ const EditToy = ({ user }) => {
   const submitHandler = (e) => {
     e.preventDefault()
     axios.put(`http://localhost:8000/api/update/${id}`, {
-      name, price, category, description, image, hashtag
+      name, price, category, description, image, hashtag, submitter, reservedBy
     }, { withCredentials: true, credentials: 'include' })
       .then(res => {
         console.log(res)

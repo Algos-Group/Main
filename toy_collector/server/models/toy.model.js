@@ -34,8 +34,8 @@ const ToySchema = new mongoose.Schema({
     submitter: {
         type: String,
     },
-    reserved: {
-        type: Boolean,
+    reservedBy: {
+        type: String,
     }
 
 

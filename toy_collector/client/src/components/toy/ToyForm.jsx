@@ -4,8 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import Lego from '../../asset/lego_city.jpeg'
 
-const ToyForm = ({ user, setUser, reserve, setReserve }) => {
-
+const ToyForm = ({ user, setUser}) => {
     const [name, setName] = useState("")
     const [price, setPrice] = useState("")
     const [category, setCategory] = useState("")
@@ -13,6 +12,7 @@ const ToyForm = ({ user, setUser, reserve, setReserve }) => {
     const [image, setImage] = useState("")
     const [hashtag, setHashtag] = useState("")
     const [submitter, setSubmitter] = useState("")
+    const [reservedBy, setReservedBy] = useState("")
     const [errors, setErrors] = useState("")
 
     const navigate = useNavigate();
@@ -28,7 +28,7 @@ const ToyForm = ({ user, setUser, reserve, setReserve }) => {
             image,
             hashtag,
             submitter: user._id,
-            reserve
+            reservedBy
         }, { withCredentials: true, credentials: "include" })
             .then(res => {
                 console.log(res)
@@ -58,7 +58,7 @@ const ToyForm = ({ user, setUser, reserve, setReserve }) => {
                     </div>
                     {/*  */}
                     <input type="hidden" onSubmit={(e) => setSubmitter(e.target.value)} value={user._id}></input>
-                    <input type="hidden" onSubmit={(e) => setReserve(e.target.value)} value={false}></input>
+                    <input type="hidden" onSubmit={(e) => setReservedBy(e.target.value)} value=""></input>
                     {/* here  is the hidden user._id field */}
                     <div className='form-floating w-75'>
                         {
