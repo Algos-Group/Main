@@ -41,8 +41,8 @@ const OneToy = ({user}) => {
         <p>Price: ${price}</p>
         <p>Category: {category}</p>
         <p>Description: {description}</p>
-        <p>Reserved? {reservedBy?':(, Is Reserved':'Nope! Still available!'}</p>
-        <img src={image} alt={name}/>
+        <p>Reserved? {reservedBy?`:( Is Reserved`:'Nope! Still available!'}</p>
+        <img className="w-50" src={image} alt={name}/>
         <br />
         { !reservedBy ?
         <>
