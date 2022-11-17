@@ -12,16 +12,12 @@ import OneToy from './components/toy/OneToy';
 import EditToy from './components/toy/EditToy';
 import ToyForm from './components/toy/ToyForm'
 import ReserveToy from './components/toy/ReserveToy';
-import AvailableToys from './components/toy/AvailableToys';
-import ReservedToy from './components/toy/ReservedToys';
 
 
 
 function App() {
 
   const [user, setUser] = useState({})
-
-  const [reserve,setReserve] = useState(false)
 
   return (
     <div className="App">
@@ -38,13 +34,11 @@ function App() {
         <Route path = "/updateUser/:id"  element={<Update user={user} setUser={setUser}/>}></Route>
 
 
-        <Route path = "/addToy"   element={<ToyForm reserve={reserve} setReserve={setReserve} user={user}/>}></Route>
+        <Route path = "/addToy"   element={<ToyForm user={user}/>}></Route>
         <Route path = "/allToys"   element={<ToyList user={user}/>}></Route>
-        <Route path = "/availableToys"   element={<AvailableToys user={user}/>}></Route>
-        <Route path = "/reservedToys"   element={<ReservedToy user={user}/>}></Route>
-        <Route path = "/Toy/:id"  element={<OneToy reserve={reserve} setReserve={setReserve} user={user}/>}></Route>
+        <Route path = "/Toy/:id"  element={<OneToy user={user}/>}></Route>
         <Route path = "/editToy/:id"   element={<EditToy user={user}/>}></Route>
-        <Route path = "/reserve/:id"   element={<ReserveToy reserve={reserve} setReserve={setReserve} user={user}/>}></Route>
+        <Route path = "/reserve/:id"   element={<ReserveToy user={user}/>}></Route>
 
         
         </Routes>

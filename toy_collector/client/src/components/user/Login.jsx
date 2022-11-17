@@ -36,7 +36,7 @@ const Login = ({ setUser, user }) => {
 
 
     return (
-        <div className="mainBody bg-light m-1">
+        <div className="mainBody bg-light">
                 {/* some below classnames are from bootstrap */}
                 <br />
             <div className='m-3'>

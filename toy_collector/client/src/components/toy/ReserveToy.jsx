@@ -26,7 +26,6 @@ const ReserveToy = ({user}) => {
             setDescription(res.data.description)
             setImage(res.data.image)
             setHashtag(res.data.hashtag)
-            setSubmitter(res.data.submitter)
             setReservedBy(res.data.reservedBy)
         }).catch(err=> console.log(err))
     } , [])
@@ -50,7 +49,7 @@ const ReserveToy = ({user}) => {
     }
 
     return (
-        <div className="bg-light m-1">
+        <div>
             <h1>Are you sure you want to reserve {name}?</h1>
             <br></br>
             <form onSubmit={reserveSubmit} >
