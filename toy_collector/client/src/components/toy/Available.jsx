@@ -30,11 +30,11 @@ const Available = ({ user }) => {
             <table className='tableRow'>
                 <tbody>
                     <tr>
-                        <th>Name:</th>
-                        <th>Price:</th>
-                        <th>Category:</th>
-                        <th>Edit / Delete:</th>
-                        <th>Reserved?:</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Category</th>
+                        <th>Edit / Delete</th>
+                        <th>Reserved?</th>
                     </tr>
                     {(user._id) ?
                         <>
@@ -74,7 +74,7 @@ const Available = ({ user }) => {
                                                 </>
                                                 :
                                                 <>
-                                                    <p>NOPE!</p>
+                                                    <p className='text-success'>NOPE!</p>
                                                 </>
                                             }
                                         </tr>

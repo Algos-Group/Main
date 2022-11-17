@@ -24,16 +24,16 @@ const ToyList = ({ user }) => {
 
 
     return (
-        <div className='mainBody'>
+        <div className='mainBody bg-light'>
             <input className='m-3 mb-4' placeholder="Search Toys" onChange={e => setQuery(e.target.value)} />
             <table className='tableRow'>
                 <tbody>
                     <tr>
-                        <th>Name:</th>
-                        <th>Price:</th>
-                        <th>Category:</th>
-                        <th>Action:</th>
-                        <th>Reserved?:</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Category</th>
+                        <th>Action</th>
+                        <th>Reserved?</th>
                     </tr>
                     { (user._id) ? 
                     <>
@@ -68,17 +68,14 @@ const ToyList = ({ user }) => {
                                 </td>
                                 {toy.reservedBy ?
                                 <>
-                                <p>Yes</p>
+                                <p className='text-danger'>Yes</p>
                                 </>
                                 :
                                 <>
-                                <p>NOPE!</p>
+                                <p className='text-success'>Nope!</p>
 
                                 </>
                                 }
-                                <td>
-
-                                </td>
                             </tr>
                         ))}
                         </>
@@ -87,7 +84,7 @@ const ToyList = ({ user }) => {
                                     }
                 </tbody>
             </table>
-        </div>
+            </div>
     )
 }
 

@@ -30,11 +30,11 @@ const Reserved = ({ user }) => {
             <table className='tableRow'>
                 <tbody>
                     <tr>
-                        <th>Name:</th>
-                        <th>Price:</th>
-                        <th>Category:</th>
-                        <th>Edit / Delete:</th>
-                        <th>Reserved?:</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Category</th>
+                        <th>Edit / Delete</th>
+                        <th>Reserved?</th>
                     </tr>
                     {(user._id) ?
                         <>
