@@ -12,6 +12,8 @@ import OneToy from './components/toy/OneToy';
 import EditToy from './components/toy/EditToy';
 import ToyForm from './components/toy/ToyForm'
 import ReserveToy from './components/toy/ReserveToy';
+import Available from './components/toy/Available';
+import Reserved from './components/toy/Reserved';
 
 
 
@@ -36,6 +38,8 @@ function App() {
 
         <Route path = "/addToy"   element={<ToyForm user={user}/>}></Route>
         <Route path = "/allToys"   element={<ToyList user={user}/>}></Route>
+        <Route path = "/availableToys"   element={<Available user={user}/>}></Route>
+        <Route path = "/reservedToys"   element={<Reserved user={user}/>}></Route>
         <Route path = "/Toy/:id"  element={<OneToy user={user}/>}></Route>
         <Route path = "/editToy/:id"   element={<EditToy user={user}/>}></Route>
         <Route path = "/reserve/:id"   element={<ReserveToy user={user}/>}></Route>

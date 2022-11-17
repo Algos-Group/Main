@@ -33,13 +33,13 @@ const Dashboard = ({ user }) => {
         <Card style={{ width: '12rem' }}>
           <Card.Img className="categoryImg" src={reserve} alt='wheelchair' />
           <Card.Body>
-            <Link to="/allToys"><Button variant="dark">Available Toys (not done yet)</Button></Link>
+            <Link to="/availableToys"><Button variant="dark">Available Toys</Button></Link>
           </Card.Body>
         </Card>
         <Card style={{ width: '12rem' }}>
           <Card.Img className="categoryImg" src={sold} alt='wheelchair' />
           <Card.Body>
-            <Link to="/allToys"><Button variant="dark">Reserved Toys (not done yet)</Button></Link>
+            <Link to="/reservedToys"><Button variant="dark">Reserved Toys</Button></Link>
           </Card.Body>
         </Card>
       </div>
