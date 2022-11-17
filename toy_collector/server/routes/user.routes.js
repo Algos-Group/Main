@@ -9,6 +9,4 @@ module.exports = app => {
     app.get("/api/user/:id", authenticate, UserController.getOneUser)
     app.put("/api/updateUser/:id", authenticate,UserController.updateUser);
     app.get("/api/users", authenticate, UserController.getAllUsers);
-
-
-}   
+}

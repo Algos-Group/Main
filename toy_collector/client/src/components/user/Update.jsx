@@ -15,12 +15,13 @@ const Update = ({user}) => {
     const [errors, setErrors] = useState('')
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/user/${id}`, {withCredentials:true})
+        axios.get(`http://localhost:8000/api/user/${id}`, {withCredentials:true,credentials:'include'})
         .then ( res => {
           console.log("this is the response to grab", res)
           setUsername(res.data.username)
           setPassword(res.data.password)
           setEmail(res.data.email)
+          setConfirmPassword(res.data.confirmPassword)
           console.log(res)
         })
         .catch((err) => console.log(err))
